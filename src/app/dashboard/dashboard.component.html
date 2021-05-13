@@ -1,0 +1,120 @@
+<app-header></app-header>
+
+<div class="container mt-3">
+    <div class="row">
+        <h1>Global Data</h1>
+        <div class="col-md-4">
+            <mat-card class="card" style="background-color: blueviolet">
+                <mat-card-content style="color: white;">
+                    <h1>{{totalConfirmed}}</h1>
+                    <h2>Total Confirmed Cases</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-4">
+            <mat-card class="card" style="background-color: green">
+                <mat-card-content style="color: white;">
+                    <h1>{{totalRecovered}}</h1>
+                    <h2>Total Recovered Cases</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-4">
+            <mat-card class="card" style="background-color: red">
+                <mat-card-content style="color: white;">
+                    <h1>{{totalDeaths}}</h1>
+                    <h2>Total Death Cases</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <mat-card class="card" style="background-color: blueviolet">
+                <mat-card-content style="color: white;">
+                    <h1>{{newConfirmed}}</h1>
+                    <h2>New Confirmed Cases</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-4">
+            <mat-card class="card" style="background-color: green">
+                <mat-card-content style="color: white;">
+                    <h1>{{newRecovered}}</h1>
+                    <h2>New Recovered Cases</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-4">
+            <mat-card class="card" style="background-color: red">
+                <mat-card-content style="color: white;">
+                    <h1>{{newDeaths}}</h1>
+                    <h2>New Death Cases</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="m-5">
+        <div class="row">
+            <h1>Regional Data</h1>
+            <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose Country</mat-label>
+                        <mat-select [(ngModel)]="selectedCountry">
+                            <mat-option *ngFor="let country of countries" [value]="country.Slug">
+                                {{country.Country}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-1">
+                    <button mat-raised-button color="primary" *ngIf="selectedCountry"
+                        (click)="getData()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3" *ngIf="countryActive">
+        <div class="col-md-3">
+            <mat-card style="background-color: blueviolet">
+                <mat-card-content style="color: white;">
+                    <h1>Active</h1>
+                    <h2>{{countryActive}}</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-3">
+            <mat-card style="background-color: blue">
+                <mat-card-content style="color: white;">
+                    <h1>Confirmed</h1>
+                    <h2>{{countryConfirmed}}</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-3">
+            <mat-card style="background-color: red">
+                <mat-card-content style="color: white;">
+                    <h1>Death</h1>
+                    <h2>{{countryDeaths}}</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-3">
+            <mat-card style="background-color: green">
+                <mat-card-content style="color: white;">
+                    <h1>Recovered</h1>
+                    <h2>{{countryRecovered}}</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row p-1 m-1">
+        <div class="col-md-6">
+            <canvas id="confirmed"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="activeRecoveredDeath"></canvas>
+        </div>
+    </div>
+</div>
