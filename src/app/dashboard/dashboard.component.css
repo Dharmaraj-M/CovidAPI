@@ -1,11 +1,30 @@
 .card {
-    max-width: 400px;
-    border-radius: 3%;
+  margin: 3%;
+  max-width: 300px;
+  box-shadow: 4px 4px 10px grey;
+}
+.row {
+  margin: 1%;
+  padding: 1%;
 }
 h1 {
-    font-size: xx-large;
+  font-size: xx-large;
 }
-/* .chart {
-    width: 700px;
-    height: 700px;
-} */
+.gt-confirmed,
+.gy-confirmed,
+.ry-confirmed {
+  color: blue;
+}
+.gt-recovered,
+.gy-recovered,
+.ry-recovered {
+  color: green;
+}
+.gt-deaths,
+.gy-deaths,
+.ry-deaths {
+  color: red;
+}
+.ry-active {
+  color: blueviolet;
+}

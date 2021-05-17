@@ -1,119 +1,114 @@
 <app-header></app-header>
 
-<div class="container mt-3">
+<div class="container">
     <div class="row">
-        <h1>Global Data</h1>
+        <h1>Global Total Data</h1>
         <div class="col-md-4">
-            <mat-card class="card" style="background-color: blueviolet">
-                <mat-card-content style="color: white;">
-                    <h1>{{totalConfirmed}}</h1>
+            <mat-card class="card gt-confirmed">
+                <mat-card-content>
+                    <h1>{{totalConfirmed | number}}</h1>
                     <h2>Total Confirmed Cases</h2>
                 </mat-card-content>
             </mat-card>
         </div>
         <div class="col-md-4">
-            <mat-card class="card" style="background-color: green">
-                <mat-card-content style="color: white;">
-                    <h1>{{totalRecovered}}</h1>
+            <mat-card class="card gt-recovered">
+                <mat-card-content>
+                    <h1>{{totalRecovered | number}}</h1>
                     <h2>Total Recovered Cases</h2>
                 </mat-card-content>
             </mat-card>
         </div>
         <div class="col-md-4">
-            <mat-card class="card" style="background-color: red">
-                <mat-card-content style="color: white;">
-                    <h1>{{totalDeaths}}</h1>
+            <mat-card class="card gt-deaths">
+                <mat-card-content>
+                    <h1>{{totalDeaths | number}}</h1>
                     <h2>Total Death Cases</h2>
                 </mat-card-content>
             </mat-card>
         </div>
     </div>
-    <div class="row mt-3">
+    <div class="row">
+        <h1>Global Yesterday's Data</h1>
         <div class="col-md-4">
-            <mat-card class="card" style="background-color: blueviolet">
-                <mat-card-content style="color: white;">
-                    <h1>{{newConfirmed}}</h1>
+            <mat-card class="card gy-confirmed">
+                <mat-card-content>
+                    <h1>{{newConfirmed | number}}</h1>
                     <h2>New Confirmed Cases</h2>
                 </mat-card-content>
             </mat-card>
         </div>
         <div class="col-md-4">
-            <mat-card class="card" style="background-color: green">
-                <mat-card-content style="color: white;">
-                    <h1>{{newRecovered}}</h1>
+            <mat-card class="card gy-recovered">
+                <mat-card-content>
+                    <h1>{{newRecovered | number}}</h1>
                     <h2>New Recovered Cases</h2>
                 </mat-card-content>
             </mat-card>
         </div>
         <div class="col-md-4">
-            <mat-card class="card" style="background-color: red">
-                <mat-card-content style="color: white;">
-                    <h1>{{newDeaths}}</h1>
+            <mat-card class="card gy-deaths">
+                <mat-card-content>
+                    <h1>{{newDeaths | number}}</h1>
                     <h2>New Death Cases</h2>
                 </mat-card-content>
             </mat-card>
         </div>
     </div>
-    <div class="m-5">
-        <div class="row">
-            <h1>Regional Data</h1>
-            <div class="row">
-                <div class="col-md-3">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Choose Country</mat-label>
-                        <mat-select [(ngModel)]="selectedCountry">
-                            <mat-option *ngFor="let country of countries" [value]="country.Slug">
-                                {{country.Country}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-1">
-                    <button mat-raised-button color="primary" *ngIf="selectedCountry"
-                        (click)="getData()">Submit</button>
-                </div>
-            </div>
+    <div class="row">
+        <h1>Regional Data</h1>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Choose Country</mat-label>
+                <mat-select [(ngModel)]="selectedCountry">
+                    <mat-option (click)="getData()" *ngFor="let country of countries" [value]="country.Slug">
+                        {{country.Country}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
-    <div class="row mt-3" *ngIf="countryActive">
+    <div class="row" *ngIf="countryActive">
         <div class="col-md-3">
-            <mat-card style="background-color: blueviolet">
-                <mat-card-content style="color: white;">
+            <mat-card class="card ry-active">
+                <mat-card-content>
                     <h1>Active</h1>
-                    <h2>{{countryActive}}</h2>
+                    <h2>{{countryActive }}</h2>
                 </mat-card-content>
             </mat-card>
         </div>
         <div class="col-md-3">
-            <mat-card style="background-color: blue">
-                <mat-card-content style="color: white;">
+            <mat-card class="card ry-confirmed">
+                <mat-card-content>
                     <h1>Confirmed</h1>
-                    <h2>{{countryConfirmed}}</h2>
+                    <h2>{{countryConfirmed }}</h2>
                 </mat-card-content>
             </mat-card>
         </div>
         <div class="col-md-3">
-            <mat-card style="background-color: red">
-                <mat-card-content style="color: white;">
-                    <h1>Death</h1>
-                    <h2>{{countryDeaths}}</h2>
-                </mat-card-content>
-            </mat-card>
-        </div>
-        <div class="col-md-3">
-            <mat-card style="background-color: green">
-                <mat-card-content style="color: white;">
+            <mat-card class="card ry-recovered">
+                <mat-card-content>
                     <h1>Recovered</h1>
-                    <h2>{{countryRecovered}}</h2>
+                    <h2>{{countryRecovered }}</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-3">
+            <mat-card class="card ry-deaths">
+                <mat-card-content>
+                    <h1>Death</h1>
+                    <h2>{{countryDeaths }}</h2>
                 </mat-card-content>
             </mat-card>
         </div>
     </div>
-    <div class="row p-1 m-1">
-        <div class="col-md-6">
+    <div class="row">
+        <div class="col-md">
             <canvas id="confirmed"></canvas>
         </div>
-        <div class="col-md-6">
+    </div>
+    <div class="row">
+        <div class="col-md">
             <canvas id="activeRecoveredDeath"></canvas>
         </div>
     </div>
